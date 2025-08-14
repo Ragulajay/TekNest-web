@@ -110,6 +110,12 @@
             transition: 0.3s;
         }
 
+        button.open-btn {
+            border: none;
+            background-color: white;
+            color: #e25d1f;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -346,8 +352,9 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="project-box">
                         <h4 class="text-gradient">Hardware Projects</h4>
-                        <button class="open-btn" data-target="hardware-content"><span
-                                class="plus-icon">+</span></button>
+                        <a href="TekNest_ProjectTitleFile.pdf" target="_blank"> <button onclick="openPDF()"
+                                class="open-btn" data-target="hardware-content"><span
+                                    class="plus-icon">+</span></button></a>
                     </div>
                 </div>
 
@@ -355,7 +362,9 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="project-box">
                         <h4 class="text-gradient">IoT Projects</h4>
-                        <button class="open-btn" data-target="iot-content"><span class="plus-icon">+</span></button>
+                       <a href="TekNest_ProjectTitleFile.pdf" target="_blank"> <button onclick="openPDF()"
+                                class="open-btn" data-target="iot-content"><span
+                                    class="plus-icon">+</span></button></a>
                     </div>
                 </div>
 
