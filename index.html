@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>TEKNEST-FINAL YEAR PROJECT SUPPORT</title>
+    <!-- <meta content="width=device-width, initial-scale=1.0" name="viewport"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <script src="js/firebase-app-compat.js"></script>
+    <script src="js/firebase-firestore-compat.js"></script>
+    <!-- <script src="./upload.js"></script> -->
+
+
+    <!-- Favicon -->
+    <link href="./images/logoo.jpg" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dawning+of+a+New+Day&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================================================== */
+        /*  header	*/
+        /* ================================================== */
+        header {
+            width: 100%;
+            height: 80px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+            -webkit-transition: height 0.3s;
+            -moz-transition: height 0.3s;
+            -ms-transition: height 0.3s;
+            -o-transition: height 0.3s;
+            transition: height 0.3s;
+            background: #18191b;
+            border-bottom: solid 1px rgba(0, 0, 0, 0.0);
+        }
+
+        header .info {
+            display: none;
+            color: #fff;
+            text-align: right;
+            padding: 10px 0 10px 0;
+            width: 100%;
+            z-index: 100;
+            border-bottom: solid 1px rgba(255, 255, 255, .2);
+        }
+
+        header .info .column {
+            display: inline-block;
+            padding: 0 15px 0 15px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            float: left;
+        }
+
+        header .info .social.column {
+            border: none;
+            float: right;
+        }
+
+        header .info .social i {
+            color: #fff;
+            font-size: 14px;
+            display: inline-block;
+            float: none;
+            padding: 0 10px 0 10px;
+        }
+
+        header .info strong {
+            font-size: 12px;
+        }
+
+        header.header-light .info {
+            color: #333;
+        }
+
+        header.header-light .info .social i {
+            color: #333;
+        }
+
+        header.transparent.header-light .info,
+        header.transparent.header-light .info .social i {
+            color: #fff;
+        }
+
+        header.header-bg {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        header.transparent {
+            background: rgba(0, 0, 0, 0.0);
+        }
+
+        header.autoshow {
+            top: -80px;
+        }
+
+        header.autoshow.scrollOn,
+        header.autoshow.scrollOff {
+            -o-transition: .5s;
+            -ms-transition: .5s;
+            -moz-transition: .5s;
+            -webkit-transition: .5s;
+            transition: .5s;
+            outline: none;
+        }
+
+        header.autoshow.scrollOn {
+            top: 0;
+        }
+
+        header.autoshow.scrollOff {
+            top: -80px;
+        }
+
+        header div#logo {
+            display: table;
+            height: 80px;
+            float: left;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        header div#logo .logo-2 {
+            display: none;
+        }
+
+        header div#logo a {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        header nav {
+            float: right;
+        }
+
+        header nav a {
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        header nav a:hover {
+            color: #555;
+        }
+
+        header.smaller:not(.header-bottom):not(.side-header):not(.force-header-mobile) #mainmenu a {
+            padding-top: 18px;
+            padding-bottom: 18px;
+        }
+
+        header.smaller:not(.header-bottom):not(.side-header):not(.force-header-mobile) #mainmenu li li a {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        header.smaller:not(.header-bottom):not(.side-header):not(.force-header-mobile) #mainmenu ul {
+            top: 70px;
+        }
+
+        header.smaller:not(.header-bottom):not(.side-header):not(.force-header-mobile) #mainmenu ul ul {
+            top: 0px;
+        }
+
+        header.smaller:not(.header-bottom):not(.side-header):not(.force-header-mobile) {
+            height: 70px;
+            background: #18191b;
+        }
+
+        header.header-light.smaller:not(.header-bottom):not(.side-header):not(.force-header-mobile) {
+            height: 70px;
+            background: #ffffff;
+        }
+
+        header.smaller.no-border:not(.header-bottom):not(.side-header) {
+            border: none;
+        }
+
+        header.smaller:not(.header-bottom):not(.side-header):not(.force-header-mobile) div#logo {
+            height: 70px;
+        }
+
+        .logo-smaller div#logo {
+            width: 150px;
+            height: 30px;
+            line-height: 65px;
+            font-size: 30px;
+        }
+
+        .logo-smaller div#logo img {
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .logo-smaller div#logo .logo-1 {
+            display: none;
+        }
+
+        .logo-smaller div#logo .logo-2 {
+            display: inline-block;
+        }
+
+        .logo-small {
+            margin-bottom: 20px;
+        }
+
+        header.de_header_2 {
+            height: 125px;
+        }
+
+        header.de_header_2.smaller {
+            height: 70px;
+        }
+
+        header.de_header_2.smaller .info {
+            position: absolute;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        header.header-light {
+            background: #fff;
+        }
+
+        header.header-light.transparent {
+            background: none;
+        }
+
+        header.smaller:not(.header-bottom).header-light {
+            background: #fff;
+            border-bottom-color: #eee;
+        }
+
+        header.smaller.scroll-transparent {
+            background: none !important;
+        }
+
+
+        .de-navbar-left {
+            background: #151618;
+        }
+
+        .de-navbar-left #logo {
+            padding: 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .de-navbar-left header {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            background: none;
+            padding: 30px;
+            padding-right: 20px;
+        }
+
+
+        .de-navbar-left header #mainmenu {
+            float: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .de-navbar-left header #mainmenu>li {
+            display: block !important;
+            margin: 0;
+            float: none;
+            text-align: center;
+            font-family: "Dosis";
+            letter-spacing: 5px;
+            font-size: 14px;
+            padding: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: solid 1px rgba(255, 255, 255, .1);
+        }
+
+        .de_light.de-navbar-left header #mainmenu>li {
+            border-bottom: solid 1px rgba(0, 0, 0, .05);
+        }
+
+        .de-navbar-left header #mainmenu>li>a {
+            padding: 0;
+            opacity: .5;
+        }
+
+        .de_light.de-navbar-left header #mainmenu>li>a {
+            color: #222;
+        }
+
+        .de-navbar-left header #mainmenu>li a:hover {
+            opacity: 1;
+        }
+
+        .de-navbar-left header #mainmenu>li>a:after {
+            content: none;
+        }
+
+        .de-navbar-left header nav {
+            float: none !important;
+        }
+
+
+        /* subheader */
+        #subheader {
+            padding-bottom: 70px;
+            background: #222;
+        }
+
+        #subheader {
+            -webkit-background-size: 100% auto !important;
+            -moz-background-size: 100% auto !important;
+            -o-background-size: 100% auto !important;
+            background-size: 100% auto !important;
+        }
+
+        .de-navbar-left #subheader {
+            padding-bottom: 120px;
+        }
+
+        #subheader h1 {
+            color: #eceff3;
+            margin-top: 80px;
+            font-size: 32px;
+            letter-spacing: 5px;
+            float: left;
+            padding-right: 40px;
+            margin-right: 40px;
+            text-transform: uppercase;
+        }
+
+        #subheader span {
+            letter-spacing: 2px;
+            display: inline-block;
+            font-size: 15px;
+            margin-top: 88px;
+            color: #fff;
+        }
+
+        #subheader .crumb {
+            font-size: 10px;
+            letter-spacing: 3px;
+            margin-top: 90px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .de-navbar-left.de_light #subheader h1 {
+            color: #222;
+        }
+
+        #subheader.style-2 .title-wrap {
+            float: left;
+            margin-top: 60px;
+        }
+
+        #subheader.style-2 {
+            padding: 150px 0 150px 0;
+        }
+
+        #subheader.style-2 h1 {
+            font-size: 56px;
+            text-align: left;
+            margin: 0;
+            float: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        #subheader.style-2 h4 {
+            color: #fff;
+            margin-top: 10px;
+            font-weight: 500;
+            text-transform: none;
+        }
+
+        #subheader.style-3,
+        #subheader.style-4 {
+            background: #f8f8f8;
+            padding: 30px 0 30px 0;
+        }
+
+        #subheader.style-3 h1,
+        #subheader.style-4 h1 {
+            font-size: 28px;
+            padding-top: 10px;
+        }
+
+        #subheader.style-4 {
+            background: #202124;
+        }
+
+        /* ================================================== */
+        /* navigation */
+        /* ================================================== */
+        .header-custom:not(.header-mobile) {
+            height: auto;
+            position: relative;
+            width: 100%;
+            left: 0;
+        }
+
+        .header-custom:not(.header-mobile) nav {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: -1px;
+            float: none;
+        }
+
+        .header-custom:not(.header-mobile).s2 nav {
+            text-align: left;
+            background: none;
+            margin: 0;
+            padding: 0;
+            float: left;
+        }
+
+        .header-custom:not(.header-mobile) nav #mainmenu {
+            display: inline-block !important;
+            margin: 0;
+            float: none;
+            padding: 0;
+        }
+
+        .header-custom:not(.header-mobile) #mainmenu>li>a {
+            padding: 20px 0px 20px 20px;
+            line-height: 20px;
+        }
+
+        .header-custom:not(.header-mobile) #mainmenu>li:first-child>a {
+            padding-left: 0;
+        }
+
+        .header-custom:not(.header-mobile) div#logo {
+            width: 100%;
+        }
+
+        .header-custom:not(.header-mobile) div#logo img {
+            text-align: center;
+        }
+
+        .header-custom:not(.header-mobile) #mainmenu li>ul,
+        .header-custom:not(.header-mobile) #mainmenu li:hover>ul {
+            margin-top: -20px;
+        }
+
+        .header-custom:not(.header-mobile) #mainmenu li ul ul,
+        .header-custom:not(.header-mobile) #mainmenu li:hover ul ul {
+            top: 20px;
+        }
+
+        .header-custom:not(.header-mobile) #mainmenu li ul.mega,
+        .header-custom:not(.header-mobile) #mainmenu li:hover ul.mega {
+            margin-top: 60px;
+        }
+
+        .header-custom:not(.header-mobile) .menu-group {
+            background: rgba(255, 255, 255, .02);
+            margin-bottom: -1px;
+            height: 60px;
+            padding-top: -1
+        }
+
+        .header-custom:not(.header-mobile) .form-default {
+            margin-top: -5px;
+        }
+
+        .header-custom.header-light:not(.header-mobile) .menu-group {
+            background: rgba(0, 0, 0, .05);
+        }
+
+        #mainmenu {
+            font-family: "Roboto", Arial, Helvetica, sans-serif;
+            float: right;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        #mainmenu ul {
+            float: right;
+            margin: 0px 0px;
+            padding: 0px 0px;
+            height: 30px;
+        }
+
+        #mainmenu li {
+            margin: 0px 0px;
+            padding: 0px 0px;
+            float: left;
+            display: inline;
+            list-style: none;
+            position: relative;
+        }
+
+        #mainmenu a {
+            line-height: 30px;
+        }
+
+        #mainmenu>li>a {
+            line-height: 35px;
+        }
+
+        #mainmenu a {
+            display: inline-block;
+            padding: 25px 0px 25px 20px;
+            text-decoration: none;
+            text-align: center;
+            outline: none;
+        }
+
+        #mainmenu a,
+        header.transparent.header-light #mainmenu a {
+            color: #fff;
+        }
+
+        #mainmenu.style-2 a {
+            font-size: 14px;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        #mainmenu li a:after {
+            float: right;
+            position: relative;
+            font-family: "FontAwesome";
+            content: "\f111";
+            font-size: 6px;
+            margin-left: 20px;
+            margin-top: 0px;
+            color: #FAB702;
+        }
+
+        #mainmenu li:last-child a:after {
+            display: none;
+        }
+
+        #mainmenu.no-separator li a:after {
+            margin-left: 5px;
+        }
+
+
+        #mainmenu.dotted-separator li a:after {
+            content: "\f111";
+            font-size: 6px;
+        }
+
+        #mainmenu.line-separator li a:after {
+            content: "/";
+            font-size: 14px;
+        }
+
+        #mainmenu.circle-separator li a:after {
+            content: "\f10c";
+            font-size: 9px;
+        }
+
+        #mainmenu.strip-separator li a:after {
+            content: "\f068";
+            font-size: 9px;
+        }
+
+        #mainmenu.plus-separator li a:after {
+            content: "\f067";
+            font-size: 11px;
+        }
+
+        #mainmenu.square-separator li a:after {
+            content: "\f096";
+            font-size: 11px;
+        }
+
+        #mainmenu.no-separator li a:after {
+            font-size: 0px;
+        }
+
+        #mainmenu.ms-2 {
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        #mainmenu.ms-2 li {
+            font-size: 15px;
+        }
+
+        #mainmenu.ms-2>li {
+            font-weight: 500;
+        }
+
+        #mainmenu li li {
+            font-size: 10px;
+            font-weight: normal;
+            border-bottom: solid 1px #333;
+        }
+
+        #mainmenu li li:last-child {
+            border-bottom: none;
+        }
+
+
+        #mainmenu li li a {
+            padding: 0px 12px 0px 12px;
+            border-top: none;
+            color: #ccc;
+            width: 201px;
+            border-left: none;
+            text-align: left;
+        }
+
+        #mainmenu li li a:hover {
+            color: #111;
+        }
+
+        #mainmenu li li a:after {
+            content: none !important;
+        }
+
+        #mainmenu li li li a {
+            background: #222327;
+        }
+
+        #mainmenu li li a:hover {
+            color: #111;
+            background: #1a8b49;
+        }
+
+        /* new added menu */
+
+        #mainmenu li>ul {
+            width: 201px;
+            height: 0;
+            position: absolute;
+            top: 80px;
+            left: 0px;
+            z-index: 10;
+            opacity: 0;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        #mainmenu li:hover>ul {
+            opacity: 1;
+            height: auto;
+            margin-top: 0px;
+            overflow: visible;
+        }
+
+        #mainmenu li ul.mega ul {
+            width: 201px;
+            height: auto;
+            position: absolute;
+            top: 80px;
+            left: 0px;
+            z-index: 10;
+            visibility: hidden;
+            opacity: 0;
+            margin-top: 5px;
+        }
+
+        /* close new added menu */
+
+        #mainmenu li li {
+            display: block;
+            float: none;
+        }
+
+
+        #mainmenu ul li:hover>a {
+            color: #222;
+        }
+
+        header.header-mobile #mainmenu li ul {
+            visibility: visible;
+            opacity: 1;
+            margin-top: 0px;
+        }
+
+        #mainmenu li ul {
+            background: #222327;
+        }
+
+        #mainmenu.sub-transparent li ul {
+            background: rgba(10, 10, 10, .7);
+        }
+
+        #mainmenu li ul ul {
+            left: 100%;
+            top: 0px;
+        }
+
+        #mainmenu li:hover>ul {
+            color: #1a8b49;
+        }
+
+        #mainmenu select {
+            padding: 10px;
+            height: 36px;
+            font-size: 14px;
+            border: none;
+            background: #ff4200;
+            color: #eceff3;
+        }
+
+        #mainmenu select option {
+            padding: 10px;
+        }
+
+
+        header.header-light #mainmenu>li>a,
+        header.header-light.transparent #mainmenu>li>a,
+        header.transparent.smaller.header-light #mainmenu>li>a {
+            color: #333;
+        }
+
+        #mainmenu>li ul.mega {
+            position: fixed;
+            left: 0;
+            height: 0%;
+            width: 100%;
+            visibility: hidden;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #mainmenu li:hover ul.mega {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #mainmenu li ul.mega>li,
+        #mainmenu li ul.mega>li a {
+            width: 100%;
+        }
+
+        #mainmenu li ul.mega li.title {
+            padding: 0px 10px 10px 15px;
+            text-align: left;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #mainmenu li ul.mega>li ul {
+            position: static;
+            visibility: visible;
+            opacity: 1;
+            left: 0;
+            float: none;
+            width: 100%;
+        }
+
+        #mainmenu ul.mega>li ul li {
+            margin: 0;
+            padding: 0;
+        }
+
+        #mainmenu ul.mega>li ul li a {
+            margin: 0;
+        }
+
+        #mainmenu ul.mega>li ul li:last-child {
+            border-bottom: solid 1px #333333;
+        }
+
+        #mainmenu li ul.mega .menu-content {
+            background: #222327;
+            padding: 30px;
+        }
+
+        #mainmenu ul.mega ul,
+        #mainmenu ul.mega li,
+        #mainmenu ul.mega li li a {
+            background: none;
+        }
+
+        #mainmenu.sub-transparent li ul.mega .menu-content {
+            background: rgba(10, 10, 10, .7);
+        }
+
+        #mainmenu.menu-flex {
+            display: -webkit-box;
+            width: 80%;
+            -webkit-box-orient: horizontal;
+            -webkit-box-pack: justify;
+        }
+
+        #mainmenu.menu-flex>li {
+            -webkit-box-flex: 1;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        #mainmenu.menu-flex.mf-left>li {
+            text-align: left;
+        }
+
+        header.header-mobile #mainmenu>li ul.mega {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        header.header-mobile.header-light #mainmenu li ul.mega li.title {
+            color: #222222;
+        }
+
+        header:not(.header-mobile):not(.force-header-mobile) #mainmenu>li:hover ul.mega {
+            height: auto;
+        }
+
+        #menu-overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .9);
+            color: #ffffff;
+            z-index: 10000;
+            overflow-y: auto;
+            display: none;
+            overflow-x: hidden;
+        }
+
+        #menu-overlay.slideDown {
+            top: -100%;
+        }
+
+        #mo-button-open {
+            position: absolute;
+            display: block;
+            width: 30px;
+            right: 20px;
+            margin-top: 22px;
+            overflow: hidden;
+        }
+
+        #mo-button-open div {
+            width: 100%;
+            height: 3px;
+            background: #ffffff;
+            margin-bottom: 7px;
+        }
+
+        #mo-button-open.mo-bo-s1 {
+            top: 10px;
+        }
+
+        #mo-button-open.mo-bo-s1 div {
+            height: 1px;
+        }
+
+        #mo-button-open:hover div:nth-child(1) {
+            margin-left: 50%;
+        }
+
+        #mo-button-open:hover div:nth-child(2) {
+            margin-left: 25%;
+        }
+
+        #mo-button-close {
+            position: absolute;
+            top: 0px;
+            right: 20px;
+            display: block;
+            width: 30px;
+            height: 45px;
+            cursor: pointer;
+        }
+
+        #mo-button-close .line-1,
+        #mo-button-close .line-2 {
+            top: 32px;
+            width: 30px;
+            height: 3px;
+            background: #ffffff;
+            position: absolute;
+            border-radius: 10px;
+            right: 0px;
+        }
+
+        #mo-button-close .line-1 {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        #mo-button-close .line-2 {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        #mo-button-close:hover .line-1,
+        #mo-button-close:hover .line-2 {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+
+
+        #mo-menu ul,
+        #mo-menu li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        #mo-menu {
+            font-size: 16px;
+            margin-left: -30px;
+        }
+
+        #mo-menu a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        #mo-menu li ul a {
+            color: #888888;
+        }
+
+        #mo-menu li ul a:hover {
+            color: #ffffff;
+        }
+
+        #mo-menu>li>a {
+            font-size: 40px;
+            padding: 15px 0;
+            display: inline-block;
+        }
+
+        #mo-menu>li {
+            display: block;
+            width: 100%;
+            opacity: 0;
+        }
+
+        #mo-menu>li.show {
+            opacity: 1;
+        }
+
+        #mo-menu>li>ul {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
+
+        #mo-menu:not(.mo-center)>li>ul {
+            width: 100%;
+        }
+
+        #mo-menu>li>ul.full {
+            max-height: 2000px;
+            transition: max-height 1s ease-in-out;
+        }
+
+        #mo-menu.mo-center {
+            text-align: center;
+        }
+
+        #mo-menu.mo-center>li>ul {
+            margin-left: 15px;
+        }
+
+        #mo-menu .menu-content ul li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        #mo-menu li ul.mega .menu-content {
+            padding: 0px;
+        }
+
+        #mo-menu.mm-hover-underline>li span {
+            border-bottom: solid 1px #ffffff;
+            width: 0;
+            display: block;
+            position: relative;
+        }
+
+        #mo-menu.mm-hover-underline>li:hover span {
+            width: 100%;
+        }
+
+        #mo-menu.mm-style-1 {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        #mo-menu.mm-style-1>li>a {
+            font-size: 20px;
+        }
+
+        #mo-menu.mm-style-2 {
+            letter-spacing: 5px;
+        }
+
+        #mo-menu.mm-style-2>li>a {
+            font-size: 64px;
+            line-height: 60px;
+            font-weight: bold;
+            padding: 20px;
+            letter-spacing: 20px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0);
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: rgba(255, 255, 255, .5);
+        }
+
+        #mo-menu.mm-style-2>li>a:hover {
+            -webkit-text-stroke-color: rgba(255, 255, 255, 1);
+            transform: scale(1.2);
+            color: #ffffff;
+        }
+
+        #mo-menu.mm-style-2>li {
+            transform: scale(0);
+        }
+
+        #mo-menu.mm-style-2>li.show {
+            transform: scale(1);
+        }
+
+
+        #mo-menu.mm-style-3 {
+            letter-spacing: 5px;
+        }
+
+        #mo-menu.mm-style-3>li>a {
+            font-size: 64px;
+            line-height: 60px;
+            font-weight: bold;
+            padding: 20px;
+            letter-spacing: 20px;
+            text-transform: uppercase;
+        }
+
+        #mo-menu.mm-style-3>li>a:hover {
+            transform: scale(1.2);
+            color: #ffffff;
+        }
+
+        #mo-menu.mm-style-3>li {
+            transform: scale(0);
+        }
+
+        #mo-menu.mm-style-3>li.show {
+            transform: scale(1);
+        }
+
+
+        /* menu toggle for mobile */
+        #menu-btn {
+            display: none;
+            float: right;
+            margin-top: 5px;
+            width: 36px;
+            height: 36px;
+            padding: 6px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .header-light #menu-btn {
+            background: none;
+        }
+
+        #menu-btn:before {
+            font-family: FontAwesome;
+            content: "\f0c9";
+            font-size: 24px;
+            color: #eceff3;
+        }
+
+        .header-light #menu-btn:before {
+            color: #333;
+        }
+
+        #menu-btn.unclick:before {
+            content: "\f0c9";
+        }
+
+        #menu-btn.clicked:before {
+            content: "\f00d";
+        }
+
+        #menu-btn:hover {
+            background: #fff;
+        }
+
+        #menu-btn:hover:before {
+            color: #222;
+        }
+
+        /* menu toggle animated */
+
+        #nav-toggle {
+            float: right;
+            width: 60px;
+            height: 20px;
+            position: relative;
+            margin: 15px auto;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: .5s ease-in-out;
+            -moz-transition: .5s ease-in-out;
+            -o-transition: .5s ease-in-out;
+            transition: .5s ease-in-out;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 100;
+        }
+
+        #nav-toggle span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 50%;
+            background: #fff;
+            border-radius: 9px;
+            opacity: 1;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: .25s ease-in-out;
+            -moz-transition: .25s ease-in-out;
+            -o-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+        }
+
+        #nav-toggle span:nth-child(1) {
+            top: 10px;
+        }
+
+        #nav-toggle span:nth-child(2) {
+            top: 18px;
+        }
+
+        #nav-toggle span:nth-child(3) {
+            top: 26px;
+        }
+
+        #nav-toggle.open span:nth-child(1) {
+            top: 18px;
+            -webkit-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -o-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        #nav-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #nav-toggle.open span:nth-child(3) {
+            top: 18px;
+            -webkit-transform: rotate(-135deg);
+            -moz-transform: rotate(-135deg);
+            -o-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+        }
+
+        #menu-wrapper {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-align: center;
+            height: 0;
+            overflow-y: auto;
+        }
+
+        #menu-wrapper nav {
+            display: inline-block;
+            margin: 20px auto 80px auto;
+            padding: 0;
+            float: none;
+            font-size: 26px;
+            opacity: 0;
+        }
+
+        /* Container for icon and animated background */
+        .call-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
+            z-index: 9999;
+            display: block;
+            /* ensure visible */
+        }
+
+        /* Animated pulse background */
+        .call-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background-color: #FEA116;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: zoomBackground 1.5s infinite;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        /* Static call button */
+        .call-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FEA116;
+            color: white;
+            font-size: 28px;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .call-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background-color: #218838;
+        }
+
+        /*dropdown*/
+        .project-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .project-box h4 {
+            margin-bottom: 10px;
+        }
+
+        .open-btn {
+            font-size: 24px;
+            background: #46a797;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .open-btn:hover {
+            background: white !important;
+            color: black !important;
+            border: 1px solid black;
+        }
+
+        .project-content {
+            display: none;
+            margin-top: 30px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card h4 {
+            margin-bottom: 20px;
+        }
+
+        .content-card ul {
+            padding-left: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            font-size: 20px;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Background animation */
+        @keyframes zoomBackground {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.6);
+                opacity: 0.1;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+        }
+
+        /* Ensure visible on mobile */
+        @media (max-width: 767px) {
+            .call-wrapper {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .text-md-justify {
+                text-align: justify;
+            }
+        }
+    </style>
+
+    <!-- Icon Font Stylesheet -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"> -->
+    <script src="js/all.min.js" crossorigin="anonymous"></script>
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/owl.carousel.min.css" rel="stylesheet">
+    <link href="css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="container-fluid bg-black p-0">
+        <!-- Navbar & Hero Start -->
+        <header class="header-custom">
+
+            <!--  -->
+
+            <div class="menu-group">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <!-- mainmenu begin -->
+                            <nav class="md-flex">
+                                <ul id="mainmenu">
+                                    <li><a href="#">Home<span></span></a>
+
+                                    </li>
+
+
+                                    <li><a href="#projects">Projects</a>
+
+                                    </li>
+                                    <li><a href="#services">Services</a>
+
+                                    </li>
+                                    <li><a href="#support">Support</a>
+
+                                    </li>
+
+                                    <li><a href="#contact">Contact</a>
+
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            <!-- mainmenu close -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <div class="container-xxl py-lg-4 py-sm-0 bg-darkness hero-header mb-5 Home_Wrapper sm:h-[100px] md:h-[400px] lg:h-[450px]  xl:h-[600px] lg:top-0 flex"
+            style="height: 100vh;display: flex; align-items: center; justify-content: center;">
+            <div class="container my-5 py-lg-4 py-sm-0 absolute h-[250px] -top-5 left-0 ">
+                <div alt="Overlay Image" class="overlay-image"></div>
+                <div alt="Overlay Image" class="overlay-image2"></div>
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6 text-center text-lg-start">
+                        <h1 class="display-3 text-white ">BUILD YOUR<span
+                                class="dawning-of-a-new-day-regular">PROJECT</span><br>BUILDING YOUR<span
+                                style="color: #E4A025;"> FUTURE</span></h1>
+                        <p class="text-white  mb-4 pb-2">Fill out this Register Form
+
+                            <br>to book your slot for final year project support at the lowest prices.
+                            Limitted slots Available, So act Fast!
+                        </p>
+                        <a target="_blank" href="https://forms.gle/KWRuZ3CP2yHpAMNq7"
+                            class="btn btn-primary py-sm-3 px-sm-5 me-3">REGISTER<i
+                                class="fa-solid fa-screwdriver"></i></a>
+
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-end">
+                        <img class="img-fluid" style="border-radius: 100%;" src="./media/logo.jpg" alt="">
+                        <!-- <video oncontextmenu="event.preventDefault()" src="./media/" autoplay="" loop="" muted=""></video> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+
+    <!-- Service Start -->
+    <!-- <div class="container-xxl py-5">
+        <div class="container round-solid">
+            <div class="row g-4">
+                <div class="col-lg-3 col-sm-6" data-wow-delay="0.1s">
+                    <div class="service-item pt-3">
+                        <div class="p-2">
+                            <p>Project Assistance</p>
+                            <h3 class="text-gradient">1 Year</h3>
+                            <p>Guidance & Support</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 " data-wow-delay="0.3s">
+                    <div class="service-item pt-3">
+                        <div class="p-2">
+                            <p>Expert Review</p>
+                            <h3 class="text-gradient">24 Hours</h3>
+                            <p>Fast Project Validation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 " data-wow-delay="0.5s">
+                    <div class="service-item pt-3">
+                        <div class="p-2">
+                            <p>Practical Learning</p>
+                            <h3 class="text-gradient">Performance</h3>
+                            <p>Hands-on Training</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 " data-wow-delay="0.7s">
+                    <div class="service-item pt-3">
+                        <div class="p-2">
+                            <p>Student Friendly</p>
+                            <h3 class="text-gradient">Free</h3>
+                            <p>Consultation & Resources</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Service End -->
+    <!-- Service Start -->
+    <div id="projects" class="container-xxl py-5">
+        <div class="container round-solid">
+            <div class="text-center mb-5">
+                <h2 class="text-gradient">Terknest Final Year Project Support</h2>
+                <p class="mb-0">Explore our curated list of project titles across major domains</p>
+            </div>
+
+            <div class="row g-4 justify-content-center ">
+
+                <!-- Software Project Box -->
+                <div class="col-lg-4 col-sm-6">
+                    <div class="project-box">
+                        <h4 class="text-gradient">Software Projects</h4>
+                        <a href="TekNest_ProjectTitleFile.pdf" target="_blank"> <button onclick="openPDF()" class="open-btn"
+                                data-target="software-content"><span class="plus-icon">+</span></button></a>
+                    </div>
+                </div>
+
+                <!-- Hardware Project Box -->
+                <div class="col-lg-4 col-sm-6">
+                    <div class="project-box">
+                        <h4 class="text-gradient">Hardware Projects</h4>
+                        <button class="open-btn" data-target="hardware-content"><span
+                                class="plus-icon">+</span></button>
+                    </div>
+                </div>
+
+                <!-- IoT Project Box -->
+                <div class="col-lg-4 col-sm-6">
+                    <div class="project-box">
+                        <h4 class="text-gradient">IoT Projects</h4>
+                        <button class="open-btn" data-target="iot-content"><span class="plus-icon">+</span></button>
+                    </div>
+                </div>
+
+                <!-- Content Tabs -->
+                <!-- <div class="project-content" id="software-content">
+                    <div class="content-card">
+                        <button class="close-btn">×</button>
+                        <h4 class="text-gradient">Software Project Titles</h4>
+                        <ul>
+                            <li>Online Course Evaluation System for Colleges</li>
+                            <li>Digital Hostel Management Portal</li>
+                            <li>Cloud-Based Attendance System</li>
+                            <li>Bug Tracking System</li>
+                            <li>Online Examination Portal</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-content" id="hardware-content">
+                    <div class="content-card">
+                        <button class="close-btn">×</button>
+                        <h4 class="text-gradient">Hardware Project Titles</h4>
+                        <ul>
+                            <li>Smart Energy Meter using GSM</li>
+                            <li>Obstacle Detection for Visually Impaired</li>
+                            <li>RFID-Based Security System</li>
+                            <li>Home Automation using Arduino</li>
+                            <li>Speed Control of DC Motor</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-content" id="iot-content">
+                    <div class="content-card">
+                        <button class="close-btn">×</button>
+                        <h4 class="text-gradient">IoT Project Titles</h4>
+                        <ul>
+                            <li>Smart Irrigation System using IoT</li>
+                            <li>IoT-Based Air Pollution Monitoring</li>
+                            <li>Smart Waste Management System</li>
+                            <li>IoT Health Monitoring Wearable</li>
+                            <li>Wi-Fi Controlled Robot Car</li>
+                        </ul>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Service End -->
+
+
+
+    <!-- About Start -->
+    <div id="services" class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h5 class="section-title ff-secondary text-center text-primary fw-normal">@ TekNest Project Support</h5>
+                <h1 class="mb-5">OUR SERVICES</h1>
+            </div>
+            <div class="row g-5">
+                <!-- col right -->
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="service-item pt-3">
+                        <div class="p-4">
+                            <img src="./images/planning.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="mb-3"> PROJECT PLANNING</h2>
+                    <p class="mb-3 text-md-justify">We assist you in selecting the right project idea based on your
+                        interest and current industry trends. Our experts help in defining clear project goals and
+                        objectives. Guidance is provided for choosing suitable tools, platforms, and technologies. We
+                        create a proper project timeline with achievable milestones.</p>
+                    <p class="mb-3 text-md-justify">Risk analysis and problem identification are carried out before
+                        execution. Support for preparing project proposals and abstracts. Idea validation is done to
+                        ensure feasibility and innovation. End-to-end planning ensures a structured approach for your
+                        project success.</p>
+                    <div class="row g-4 mb-4">
+
+                    </div>
+                </div>
+                <!-- col left -->
+
+                <div class="col-lg-6">
+                    <h2 class="mb-3">IMPLEMENTATION SUPPORT</h2>
+                    <p class="mb-3 text-md-justify">Hands-on help with coding and software development. Assistance with
+                        hardware integration for IoT, embedded, or robotics projects. Debugging support to identify and
+                        fix project errors. Testing is carried out to ensure the project runs smoothly. </p>
+                    <p class="mb-3 text-md-justify">Guidance in using latest frameworks, tools, and libraries. Support
+                        for database design and connectivity issues. Help in integrating APIs or third-party modules.
+                        Step-by-step mentoring until the project is successfully implemented.</p>
+                    <div class="row g-4 mb-4">
+
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block" style="justify-items: center;">
+                    <div class="service-item pt-3">
+                        <div class="p-4">
+                            <img src="./images/implement.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- col right -->
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="service-item pt-3  ">
+                        <div class="p-4">
+                            <img src="./images/customer-support.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="mb-4">EXPERT GUIDANCE</h2>
+                    <p class="mb-4 text-md-justify">Personalized one-on-one mentoring from experienced professionals.
+                        Insights into real-world applications of your project. Guidance in adopting best engineering and
+                        coding practices. Continuous feedback to improve project quality.</p>
+                    <p class="mb-4 text-md-justify">Suggestions for making your project unique and innovative.
+                        Troubleshooting complex technical issues. Assistance in research and referencing academic
+                        resources. Helping you align projects with latest technological trends.</p>
+
+                </div>
+                <!-- col left -->
+
+                <div class="col-lg-6">
+                    <h2 class="mb-2">DOCUMENTATION ASSISTANCE</h2>
+                    <p class="mb-2 text-md-justify">Professional preparation of project reports and abstracts.
+                        Assistance in writing well-structured introduction and literature survey. Help with methodology,
+                        system design, and implementation chapters.
+                    </p>
+                    <p class="mb-1 text-md-justify">Proper formatting according to university or college guidelines.
+                        Proofreading and editing for grammar, clarity, and flow.</p>
+                    <p class="mb-1 text-md-justify">Support for preparing research papers for publication. Help in
+                        creating professional PowerPoint presentations. </p>
+
+                </div>
+                <div class="col-lg-6 d-none d-lg-block" style="justify-items: center;">
+                    <div class="service-item pt-3 ">
+                        <div class="p-4">
+                            <img src="./images/documentation.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <!-- Menu -->
+    <div id="support" class="container-fluid bg-black p-0">
+        <div
+            class="container-xxl py-lg-4 py-sm-0 bg-darkness hero-header mb-5 Home_Wrapper sm:h-[100px]   md:h-[400px] lg:h-[450px]  xl:h-[600px]  lg:top-0">
+            <div class="container my-5 py-lg-4 py-sm-0 absolute h-[250px] -top-5 left-0 ">
+                <div alt="Overlay Image" class="overlay-image"></div>
+                <div alt="Overlay Image" class="overlay-image2"></div>
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6 text-center text-lg-start">
+                        <h1 class="text-white  mb-6 pb-4">Get in touch</h1>
+                        <a target="_blank" href="https://wa.me/+917904918374"
+                            class="btn btn-primary py-sm-3 px-sm-5 me-3">Get
+                            Support<i class="fa-solid fa-screwdriver"></i></a>
+                        <br>
+                        <br>
+                        <p class="text-white  mb-4 pb-2">Have Any Doubts?<br>
+                            We are here to help you!
+                            If you have any questions or need clarification about your final year projects, feel free to
+                            contact us on WhatsApp.</p>
+                    </div>
+                    <div class="col-lg-2 text-center text-lg-end">
+                        <img class="Image" src="images/Supportticketimage.png" alt=""
+                            style="width: 500px; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrapper with animated background layer -->
+    <div class="call-wrapper">
+        <a href="tel:+919360755729" class="call-button" title="Call Now">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+
+
+    <!-- Footer Start -->
+    <center>
+        <div id="contact" class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4"></h4>
+                        <a class="btn btn-link" href="#">About Us</a>
+                        <a class="btn btn-link" href="#">Terms & Condition</a>
+                        <a class="btn btn-link" href="#">How to Build Project</a>
+
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact Us</h4>
+                        <!-- Sales Contact -->
+                        <div>
+                            <h5 class="mb-2 text-primary">🛒 Sales</h5>
+                            <p class="mb-2"><i class="fa fa-phone me-3"></i>+91 7904918374</p>
+                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>teknestcontact@gmail.com</p>
+                        </div>
+                        <!-- Support Contact -->
+                        <div class="mb-4">
+                            <h5 class="mb-2 text-primary">🔧 Support</h5>
+                            <p class="mb-2"><i class="fa fa-phone me-3"></i>+91 7904918374</p>
+                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>teknestcontact@gmail.com</p>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
+                        <h5 class="text-light fw-normal">Monday - Saturday</h5>
+                        <p>09:00AM - 7:30PM</p>
+                        <h5 class="text-light fw-normal">Sunday</h5>
+                        <p>09:00AM - 06:00PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            � <a class="border-bottom" href="#">TekNest Project Support</a>, All Right Reserved.
+                            Designed By TekNest
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+    </center>
+
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/easing.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/counterup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/moment-timezone.min.js"></script>
+    <script src="js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const openButtons = document.querySelectorAll('.open-btn');
+            const closeButtons = document.querySelectorAll('.close-btn');
+            const contents = document.querySelectorAll('.project-content');
+
+            openButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetId = btn.getAttribute('data-target');
+
+                    // Hide other open tabs
+                    contents.forEach(content => content.style.display = 'none');
+
+                    // Show selected tab
+                    document.getElementById(targetId).style.display = 'block';
+
+                    // Scroll to view
+                    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            function openPDF() {
+                window.open('/TekNest_ProjectTitleFile', '_blank');
+            }
+
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.closest('.project-content').style.display = 'none';
+                });
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
